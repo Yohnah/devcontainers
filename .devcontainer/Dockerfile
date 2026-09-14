@@ -1,3 +1,14 @@
+ARG BASE_IMAGE=debian:trixie-slim
 
-# syntax=docker/dockerfile:1
-FROM mcr.microsoft.com/devcontainers/base:debian
+FROM ${BASE_IMAGE} AS base
+
+
+RUN <<BASE
+    apt-get update
+    apt-get -y install extrepo
+    extrepo enable griffo
+    apt-get update
+    apt-get -y install just
+BASE
+
+FROM base AS devcontainer

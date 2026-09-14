@@ -2,30 +2,24 @@
     // Devcontainer configurado para Docker-outside-of-Docker (DoD):
     // Permite usar el Docker del host dentro del contenedor de desarrollo.
     "name": "Debian DevContainer",
+    "remoteUser": "vscode",
     "build": {
         "dockerfile": "Dockerfile"
-    },
-    // Usa la feature oficial de Microsoft para Docker-outside-of-Docker
-    "features": {
-        "ghcr.io/devcontainers/features/docker-outside-of-docker:1": {
-            "version": "latest",
-            "enableNonRootDocker": true,
-            "moby": true
+        "target": "devcontainer",
+        "args": {
+            "BASE_IMAGE": "ghcr.io/yohnah/dev-debian:latest"
         }
     },
+    "features": {
+      "ghcr.io/devcontainers/features/docker-in-docker:4.1.0": {
+          "moby": false
+      }
+    },
+
+
     // Optional: SSH agent forwarding if needed
     "runArgs": [
         "-v", "${env:SSH_AUTH_SOCK}:/ssh-agent",
         "-e", "SSH_AUTH_SOCK=/ssh-agent"
-    ],
-    "customizations": {
-        "vscode": {
-            "settings": {},
-            "extensions": [
-                "ms-azuretools.vscode-docker"
-            ]
-        }
-    },
-    "remoteUser": "vscode",
-    "postCreateCommand": "echo 'Devcontainer ready.'"
+    ]
 }

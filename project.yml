@@ -1,0 +1,68 @@
+schema_version: "1.0.0"
+
+slug: "devcontainers"
+
+name: "DevContainers"
+
+author: "yohnah <yohnah@yohnah.net>"
+
+license: "MPL-2.0"
+
+description: "Differents containers to be used on devcontainers environments"
+
+website: "https://github.com/Yohnah/devcontainers"
+
+source: "https://github.com/yohnah/devcontainers"
+
+config:
+    users:
+        - username: "coder"
+          user_id: 1000
+          group_id: 1000
+        - username: "vscode" # In order to vscode compatibility
+          user_id: 1000
+          group_id: 1000
+        - username: "dev" # In order to devpod compatibility
+          user_id: 1000
+          group_id: 1000
+    containers:
+        debian:
+            image: "debian:trixie-slim"
+            scripts:
+                base: base-debian-installer.sh
+                setup: setup-debian-installer.sh
+                shell: shell-installer.sh
+        alpine:
+            image: "alpine:latest"
+            scripts:
+                base: base-alpine-installer.sh
+                setup: setup-installer.sh
+                shell: shell-installer.sh
+        ubuntu:
+            image: "ubuntu:latest"
+            no_platforms: "linux/386"
+            scripts:
+                base: base-debian-installer.sh
+                setup: setup-debian-installer.sh
+                shell: shell-installer.sh
+        rockylinux:
+            image: "rockylinux:9"
+            no_platforms: "linux/386"
+            scripts:
+                base: base-redhat-installer.sh
+                setup: setup-installer.sh
+                shell: shell-installer.sh
+        almalinux:
+            image: "almalinux:9"
+            no_platforms: "linux/386"
+            scripts:
+                base: base-redhat-installer.sh
+                setup: setup-installer.sh
+                shell: shell-installer.sh
+
+                   
+landscape:
+    category: "devcontainers"
+    subcategory: "containers"
+
+    

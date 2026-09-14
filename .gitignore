@@ -39,6 +39,7 @@ logs
 *.sublime-workspace
 *.sublime-project
 .history/
+.fresh*
 
 # Build
 dist/
@@ -61,6 +62,7 @@ docker-compose.override.yml
 *.tmp
 *.orig
 *.old
+*-lock.*
 
 # Environment files
 .env
